@@ -4,11 +4,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                    sh """
-    . .env/bin/activate
-    pip install -r requirements/test.txt
-    """
-                 sh 'python app.py' 
+                sh 'virtualenv venv --distribute'
+                sh 'source venv/bin/activate '
+                sh 'pip install --user -r requirements.txt'
+                sh 'python app.py' 
             }
         }
     }
