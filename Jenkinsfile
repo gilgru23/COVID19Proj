@@ -3,10 +3,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh """
-. .env/bin/activate
-pip install -r requirements.txt
-"""
+                sh 'pip install -r requirements.txt'
+                sh 'python app.py' 
             }
         }
     }
