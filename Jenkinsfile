@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 echo '#############'
-                sh 'python.exe app.py'‏
+                sh 'pwd'
             }
         }
     }
