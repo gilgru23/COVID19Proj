@@ -64,7 +64,6 @@ class Router(Resource):
         if(status==-1):
           return {"status":"fail"}
         #Todo:check what to do if there wasn't a call to the api yet
-    print(status)
     return {}
 
 api.add_resource(Router,'/<string:method>')
