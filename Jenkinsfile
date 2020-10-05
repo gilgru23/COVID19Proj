@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                echo '^^^^^^^'
                                sh """
                     echo ${SHELL}
                     [ -d venv ] && rm -rf venv
@@ -12,6 +13,7 @@ pipeline {
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     pip install -r requirements.txt 
                 """
+                echo '#########'
             }
         }
     }
