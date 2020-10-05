@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'pip3 --version'
+                sh """
+. .env/bin/activate
+pip install -r requirements.txt
+"""
             }
         }
     }
