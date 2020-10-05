@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'pip --version'
+                sh 'pip3 --version'
             }
         }
     }
