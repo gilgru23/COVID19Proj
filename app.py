@@ -42,6 +42,7 @@ def calculatePeak(country,term,methodName):
       if (dailyValue > currPeakValue):
         currPeakValue = dailyValue
         dateOfCurrPeak = date
+        lastDate = date
       lastDate = date
       count+=1
   return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue, "dateToday": lastDate,
