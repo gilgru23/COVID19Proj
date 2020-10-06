@@ -33,17 +33,16 @@ def calculatePeak(country,term,methodName):
       count += 1
       lastDate = date
       continue
-    else:
-      dailyValue=filtered[date] - filtered[lastDate]
-      if(term=='cases'):
-        currrNumOfDeaths=parsed['timeline']['deaths'][date]-parsed['timeline']['deaths'][lastDate]
-        currNumOfRecovered=parsed['timeline']['recovered'][date]-parsed['timeline']['recovered'][lastDate]
-        dailyValue = dailyValue- currrNumOfDeaths-currNumOfRecovered #for each day the number of the new cases=total num of cases the today-total num of cases yesterday-numberOfDeathsToday-numberOfRecoveredToday
-      if (dailyValue > currPeakValue):
-        currPeakValue = dailyValue
-        dateOfCurrPeak = date
-      lastDate = date
-      count+=1
+    dailyValue=filtered[date] - filtered[lastDate]
+    if(term=='cases'):
+      currrNumOfDeaths=parsed['timeline']['deaths'][date]-parsed['timeline']['deaths'][lastDate]
+      currNumOfRecovered=parsed['timeline']['recovered'][date]-parsed['timeline']['recovered'][lastDate]
+      dailyValue = dailyValue- currrNumOfDeaths-currNumOfRecovered #for each day the number of the new cases=total num of cases the today-total num of cases yesterday-numberOfDeathsToday-numberOfRecoveredToday
+    if (dailyValue > currPeakValue):
+      currPeakValue = dailyValue
+      dateOfCurrPeak = date
+    lastDate = date
+    count+=1
   return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue, "dateToday": lastDate,
           "sumOfCasesToday": parsed['timeline']['cases'][lastDate], "sumOfDeathsToday": parsed['timeline']['deaths'][lastDate],
           "sumOfRecoveredToday": parsed['timeline']['recovered'][lastDate],"counter":count}
