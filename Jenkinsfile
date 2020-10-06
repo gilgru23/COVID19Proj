@@ -1,6 +1,6 @@
     pipeline {
     agent any
-        properties{
+        options{
             ([parameters([string(defaultValue: 'Israel', description: '', name: 'country', trim: false)])])
         }
     stages {
