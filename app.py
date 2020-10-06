@@ -43,7 +43,9 @@ def calculatePeak(country,term,methodName):
         currPeakValue = dailyValue
         dateOfCurrPeak = date
       lastDate = date
-  return {"country":country,"method":methodName,"date":dateOfCurrPeak,"value":currPeakValue}
+  return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue, "dateToday": date,
+          "sumOfCasesToday": parsed['timeline']['cases'][date], "sumOfDeathsToday": parsed['timeline']['deaths'][date],
+          "sumOfRecoveredToday": parsed['timeline']['recovered'][date]}
 
 class Router(Resource):
   def get(self,method):
