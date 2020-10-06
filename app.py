@@ -1,11 +1,13 @@
+
 from flask import Flask, render_template,request
 import requests
 from flask_restful import Api,Resource
-
+from multiprocessing import Process
 
 app = Flask(__name__)
 api=Api(app)
 lastdays={'lastdays':31};#For calculating diffrences between days I need the day before the 30th day
+status=-1
 def deathsPeak(country):
   return calculatePeak(country,'deaths','deathsPeak')
 
@@ -44,35 +46,16 @@ def calculatePeak(country,term,methodName):
         dateOfCurrPeak = date
         lastDate = date
       lastDate = date
-      count+=1
   return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue, "dateToday": lastDate,
           "sumOfCasesToday": parsed['timeline']['cases'][lastDate], "sumOfDeathsToday": parsed['timeline']['deaths'][lastDate],
           "sumOfRecoveredToday": parsed['timeline']['recovered'][lastDate],"counter":count}
 
-class Router(Resource):
-  def get(self,method):
-    countryName=request.args.get('country')#get the query after country?
-    if(countryName):#checks if arguement country argument was entered
-      if(method=='newCasesPeak'):
-        return newCasesPeak(countryName)
-      if (method == 'recoveredPeak'):
-        return recoveredPeak(countryName)
-      if (method == 'deathsPeak'):
-        return deathsPeak(countryName)
-    else:
-      if(method=='status'):
-        if(status==1):
-          return {"status":"success"}
-        if(status==-1):
-          return {"status":"fail"}
-        #Todo:check what to do if there wasn't a call to the api yet
-    print(status)
-    return {}
 
-api.add_resource(Router,'/<string:method>')
-
-if __name__ == '__main__':
-  app.run(debug=True)
+def shutdown_server():
+  func = request.environ.get('werkzeug.server.shutdown')
+  if func is None:
+    raise RuntimeError('Not running with the Werkzeug Server')
+  func()
 
 class Router(Resource):
   def get(self,method):
@@ -85,16 +68,20 @@ class Router(Resource):
       if (method == 'deathsPeak'):
         return deathsPeak(countryName)
     else:
+      if (method == 'shutdown'):
+        shutdown_server()
+        return {"status":"terminated"}
       if(method=='status'):
         if(status==1):
           return {"status":"success"}
         if(status==-1):
           return {"status":"fail"}
-        #Todo:check what to do if there wasn't a call to the api yet
-    print(status)
     return {}
 
 api.add_resource(Router,'/<string:method>')
+
+
+
 
 if __name__ == '__main__':
   app.run(debug=True)
