@@ -14,7 +14,7 @@ On a personal note:
 
 > I worked on the project hard, hope this will be noticeable by you in your examination.
 > I learned many tools during my work that I had no prior knowledge of in a relatively short time.
-> I hope to get the chance apply this knowledge to the company in the future.
+> I hope to get the chance apply this knowledge to the company in the future :).
 
 
 
