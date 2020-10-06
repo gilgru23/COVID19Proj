@@ -1,6 +1,8 @@
     pipeline {
     agent any
-   properties([parameters([string(defaultValue: 'Israel', description: '', name: 'country', trim: false)])])
+        properties{
+            ([parameters([string(defaultValue: 'Israel', description: '', name: 'country', trim: false)])])
+        }
     stages {
         stage('build') {
             steps {
