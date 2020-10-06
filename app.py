@@ -40,7 +40,7 @@ def calculatePeak(country,term,methodName):
       if(term=='cases'):
         currrNumOfDeaths=parsed['timeline']['deaths'][date]-parsed['timeline']['deaths'][lastDate]
         currNumOfRecovered=parsed['timeline']['recovered'][date]-parsed['timeline']['recovered'][lastDate]
-        dailyValue = dailyValue+ currrNumOfDeaths+currNumOfRecovered #for each day the number of the new cases=total num of cases the today-total num of cases yesterday-numberOfDeathsToday-numberOfRecoveredToday
+        dailyValue = dailyValue- currrNumOfDeaths-currNumOfRecovered #for each day the number of the new cases=total num of cases the today-total num of cases yesterday-numberOfDeathsToday-numberOfRecoveredToday
       if (dailyValue > currPeakValue):
         currPeakValue = dailyValue
         dateOfCurrPeak = date
