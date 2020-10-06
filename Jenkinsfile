@@ -1,6 +1,8 @@
     pipeline {
     agent any
-    ([parameters([string(defaultValue: 'Israel', description: '', name: 'country', trim: false)])])
+        parameters{
+            string(defaultValue: 'Israel', description: '', name: 'country', trim: false)
+        }
     stages {
         stage('build') {
             steps {
@@ -12,7 +14,7 @@
             }
             stage('tests'){
             steps{
-                sh 'curl http://127.0.0.1:5000/newCasesPeak?country=${params[0]}'
+                sh 'curl http://127.0.0.1:5000/newCasesPeak?country=israel'
                 sh 'curl http://127.0.0.1:5000/recoveredPeak?country=USA'
                 sh 'curl http://127.0.0.1:5000/deathsPeak?country=Japan'
             }
