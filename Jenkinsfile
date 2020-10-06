@@ -4,9 +4,8 @@
         stage('build') {
             steps {
                 sh 'pip install -r requirements.txt'
-                 withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                    sh 'nohup python app.py &'
-                } 
+                sh 'nohup python app.py'
+                
             }
             }
             stage('tests'){
