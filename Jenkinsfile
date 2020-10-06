@@ -19,7 +19,7 @@
                 } 
             }
             }
-            stage('tests'){
+            stage('inputs from user'){
             steps{
                script {
                     if(params){
