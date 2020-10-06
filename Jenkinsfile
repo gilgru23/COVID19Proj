@@ -2,6 +2,9 @@
     agent any
         parameters{
             string(defaultValue: 'Israel', description: '', name: 'country', trim: false)
+            string(defaultValue: 'USA', description: '', name: 'country', trim: false)
+            string(defaultValue: 'Japn', description: '', name: 'country', trim: false)
+            string(defaultValue: 'Brazil', description: '', name: 'country', trim: false)
         }
     stages {
         stage('build') {
