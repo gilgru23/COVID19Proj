@@ -28,6 +28,7 @@
                         sh "curl http://127.0.0.1:5000/recoveredPeak?country=${value}"
                         sh "curl http://127.0.0.1:5000/deathsPeak?country=${value}"
                         }
+                        sh 'curl http://127.0.0.1:5000/death sPeak?country=South Korea'
                 }
             }
             }
