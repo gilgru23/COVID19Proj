@@ -16,7 +16,7 @@
             steps{
                script {
                   params.each() {
-                     echo it
+                     echo it.name
                   }
             }
             }
