@@ -8,7 +8,7 @@
 ## Operations on the project
   - All the endpoint queries should work as requested in the project explanation.
   - The "status" request will return json with the content:"fail" if the last connection with the service was failed, or if there is no connection with the service yet, else it will return json with the content:"success".
-  - The service will run without stopping on http://127.0.0.1:5000/ once you activate the project. I added the option to shut this connection gracefully by typing the command: curl 'http://127.0.0.1:5000/shutdown'.
+  - The service will run without stopping on http://127.0.0.1:5000/ once you activate the project. I added the option to shut this connection gracefully by typing the command: "curl 'http://127.0.0.1:5000/shutdown'".
 
 On a personal note:
 
