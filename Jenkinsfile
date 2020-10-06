@@ -15,9 +15,9 @@
             stage('tests'){
             steps{
                script {
-                  params.each() {
-                     echo it.name
-                  }
+                params.each { key, value ->
+                  echo value
+                }
             }
             }
         }
