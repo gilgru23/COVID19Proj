@@ -1,8 +1,6 @@
     pipeline {
     agent any
-        options{
-            ([parameters([string(defaultValue: 'Israel', description: '', name: 'country', trim: false)])])
-        }
+    ([parameters([string(defaultValue: 'Israel', description: '', name: 'country', trim: false)])])
     stages {
         stage('build') {
             steps {
