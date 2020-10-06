@@ -14,11 +14,10 @@
             }
             stage('tests'){
             steps{
-              for (entry in params) {
-                sh "curl http://127.0.0.1:5000/newCasesPeak?country=${params.entry}"
-                sh "curl http://127.0.0.1:5000/recoveredPeak?country=${params.entry}"
-                sh "curl http://127.0.0.1:5000/deathsPeak?country=${params.entry}"
-                }
+               script {
+                  params.each() {
+                     echo it
+                  }
             }
             }
         }
