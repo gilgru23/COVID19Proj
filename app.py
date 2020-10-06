@@ -26,7 +26,7 @@ def calculatePeak(country,term,methodName):
   filtered = dict(parsed['timeline'][term])
   currPeakValue = 0
   dateOfCurrPeak = ''
-  lastDate = ''
+  global lastDate
   count = 0
   for date in filtered.keys():
     if (count == 0):  # I don't calculate the first item- the 31st day
