@@ -1,5 +1,15 @@
     pipeline {
     agent any
+    parameters{
+            string(defaultValue: 'Israel', description: '', name: 'country1', trim: false)	            
+            string(defaultValue: 'Russia', description: '', name: 'country2', trim: false)
+            string(defaultValue: 'USA', description: '', name: 'country3', trim: false)
+            string(defaultValue: 'Brazil', description: '', name: 'country4', trim: false)
+            string(defaultValue: 'Japan', description: '', name: 'country5', trim: false)
+
+
+
+        }	        
     stages {
         stage('build') {
             steps {
