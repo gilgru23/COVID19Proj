@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template,request
 import requests
 from flask_restful import Api,Resource
