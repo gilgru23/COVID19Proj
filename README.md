@@ -3,7 +3,9 @@
 ## Some important instructions for operating the project:
   - The python version that should be running on the machine is 3.8 or above !! If you use Docker image this Dockerfile below in the "Installations" section created an image that ran my project pretty well.
   - All the other dependencies are installed automatically in the Jenkinsfile through requirements.txt that was uploaded the Git repository.
+  - I added initial queries as countries parameters to the Jenkinsfile. While activating the job these parameters will be queried automatically to the project and the output will be shown in the Jenkins job console.
   - You can add an unlimited number of countries as parameters to the Jenkins projects, they will be queried to the Flask service automatically by the Jenkinsfile.
+
 
 ## Operations on the project
   - All the endpoint queries should work as requested in the project explanation.
@@ -13,7 +15,7 @@
 On a personal note:
 
 > I worked on this project hard, hope this will be noticeable by you in your examination.
-> I learned many tools during my work that I had no prior knowledge of in a relatively short time.
+> I learned many tools and gain a lot of knowledge during my work that I had no prior knowledge of in a relatively short time.
 > I hope to get the chance apply this knowledge to the company in the future :).
 
 
