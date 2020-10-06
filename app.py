@@ -6,8 +6,12 @@ from multiprocessing import Process
 
 app = Flask(__name__)
 api=Api(app)
+
+#Global varaibles
 lastdays={'lastdays':31};#For calculating diffrences between days I need the day before the 30th day
 status=-1
+
+#endpoint function
 def deathsPeak(country):
   return calculatePeak(country,'deaths','deathsPeak')
 
@@ -17,6 +21,7 @@ def recoveredPeak(country):
 def newCasesPeak(country):
   return calculatePeak(country,'cases','newCasesPeak')
 
+# The function that centralizes the logic behind the endponits- code reusable
 def calculatePeak(country,term,methodName):
   global status
   r = requests.get('https://disease.sh/v3/covid-19/historical/' + country, params=lastdays)
@@ -24,13 +29,13 @@ def calculatePeak(country,term,methodName):
     status=-1 #the contact with the api was failed
     return {}
   status = 1  #the contact with the api was succeded
-  parsed = r.json()#parse the json into a dictionary
+  parsed = r.json() #parse the json into a dictionary type
   filtered = dict(parsed['timeline'][term])
   currPeakValue = 0
   dateOfCurrPeak = ''
   global lastDate
   count = 0
-  for date in filtered.keys():
+  for date in filtered.keys(): #iterating all the dates
     if (count == 0):  # I don't calculate the first item- the 31st day
       count += 1
       lastDate = date
@@ -40,22 +45,21 @@ def calculatePeak(country,term,methodName):
       if(term=='cases'):
         currrNumOfDeaths=parsed['timeline']['deaths'][date]-parsed['timeline']['deaths'][lastDate]
         currNumOfRecovered=parsed['timeline']['recovered'][date]-parsed['timeline']['recovered'][lastDate]
-        dailyValue = dailyValue- currrNumOfDeaths-currNumOfRecovered #for each day the number of the new cases=total num of cases the today-total num of cases yesterday-numberOfDeathsToday-numberOfRecoveredToday
-      if (dailyValue > currPeakValue):
+        dailyValue = dailyValue- currrNumOfDeaths-currNumOfRecovered #for each day the number of today's new cases=total num of cases today-(total num of cases yesterday-numberOfDeathsToday-numberOfRecoveredToday)
+      if (dailyValue > currPeakValue):#finds the maximum
         currPeakValue = dailyValue
         dateOfCurrPeak = date
-        lastDate = date
       lastDate = date
   return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue}
 
-
-def shutdown_server():
+#additional methods
+def shutdown_server():#responsible for the graceful shutdown when requeted
   func = request.environ.get('werkzeug.server.shutdown')
   if func is None:
     raise RuntimeError('Not running with the Werkzeug Server')
   func()
 
-class Router(Resource):
+class Router(Resource):#responsible to navigate the requets to the right operation
   def get(self,method):
     countryName=request.args.get('country')#get the query after country?
     if(countryName):#checks if arguement country argument was entered
@@ -76,7 +80,7 @@ class Router(Resource):
           return {"status":"fail"}
     return {}
 
-api.add_resource(Router,'/<string:method>')
+api.add_resource(Router,'/<string:method>')#activate the Router above
 
 
 
