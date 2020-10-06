@@ -46,9 +46,7 @@ def calculatePeak(country,term,methodName):
         dateOfCurrPeak = date
         lastDate = date
       lastDate = date
-  return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue, "dateToday": lastDate,
-          "sumOfCasesToday": parsed['timeline']['cases'][lastDate], "sumOfDeathsToday": parsed['timeline']['deaths'][lastDate],
-          "sumOfRecoveredToday": parsed['timeline']['recovered'][lastDate],"counter":count}
+  return {"country": country, "method": methodName, "date": dateOfCurrPeak, "value": currPeakValue}
 
 
 def shutdown_server():
