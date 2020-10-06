@@ -61,8 +61,7 @@ def shutdown_server():#responsible for the graceful shutdown when requeted
 
 class Router(Resource):#responsible to navigate the requets to the right operation
   def get(self,method):
-    method=str(method).replace(" ", "")#prevent spaces to collapse the sever
-    countryName=str(request.args.get('country')).replace(" ", "")#get the query after country?, prevent spaces to collapse the sever
+    countryName=request.args.get('country')
     if(countryName):#checks if arguement country argument was entered
       if(method=='newCasesPeak'):
         return newCasesPeak(countryName)
