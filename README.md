@@ -1,4 +1,4 @@
-#Corona Project Instructions
+# Corona Project Instructions
 
 ## Some important instructions for operating the project:
   - The python version that should be running on the machine is 3.8 or above !! If you use Docker image this Dockerfile below in the "Installations" section created an image that ran my project pretty well.
