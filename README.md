@@ -1,4 +1,4 @@
-# Home Test For Devops Student Position
+#Corona Project Instructions
 
 ## Some important instructions for operating the project:
   - The python version that should be running on the machine is 3.8 or above !! If you use Docker image this Dockerfile below in the "Installations" section created an image that ran my project pretty well.
@@ -8,15 +8,9 @@
 
 
 ## Operations on the project
-  - All the endpoint queries should work as requested in the project explanation.
+  - you should enter countries as project paramaters and get: the hight peak and the date of new cases,recovered and deaths in the last 30 days.
   - The "status" request will return json with the content:"fail" if the last connection with the service was failed, or if there wan't connection with the service yet, else it will return json with the content:"success".
   - The service will run without stopping on http://127.0.0.1:5000/ once you activate the project. I added the option to shut this connection gracefully by typing the command: "curl 'http://127.0.0.1:5000/shutdown'".
-
-On a personal note:
-
-> I worked on this project hard, hope this will be noticeable by you in your examination.
-> I learned many tools and gain a lot of knowledge during my work that I had no prior knowledge of in a relatively short time.
-> I hope to get the chance apply this knowledge to the company in the future :).
 
 
 
